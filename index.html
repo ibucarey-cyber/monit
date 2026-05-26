@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Te Amo ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght=700&family=Poppins:wght=300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1a0033 0%, #330066 25%, #660099 50%, #990066 75%, #cc0066 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Partículas de fondo */
+        .background-particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.3;
+            animation: float-particle 20s infinite;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin-bottom: 40px;
+            z-index: 1;
+            filter: drop-shadow(0 0 30px rgba(255, 105, 180, 0.4));
+        }
+
+        .heart {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: heartbeat 1.5s infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 20, 147, 0.8));
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 160px;
+            background: linear-gradient(135deg, #ff1744 0%, #ff6b9d 100%);
+            border-radius: 100px 100px 0 0;
+            top: 0;
+        }
+
+        .heart::before {
+            left: 50px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+            box-shadow: inset -10px -10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .heart::after {
+            right: 50px;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+            box-shadow: inset 10px -10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            25% { transform: translate(-50%, -50%) scale(1.15); }
+            50% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .message-container {
+            text-align: center;
+            z-index: 1;
+            position: relative;
+            animation: fadeInUp 1.2s ease-out 0.5s both;
+            padding: 0 20px;
+        }
+
+        .message {
+            font-size: 32px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #ffb6d9 0%, #ff69b4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .message-sub {
+            font-size: 24px;
+            color: #ffb6d9;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(255, 105, 180, 0.4);
+            animation: pulse-text 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-text {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .sparkles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .sparkle:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
+        .sparkle:nth-child(3) { bottom: 20%; left: 5%; animation-delay: 2s; }
+        .sparkle:nth-child(4) { bottom: 10%; right: 10%; animation-delay: 1.5s; }
+        .sparkle:nth-child(5) { top: 50%; left: 15%; animation-delay: 0.5s; }
+        .sparkle:nth-child(6) { top: 60%; right: 20%; animation-delay: 1.8s; }
+
+        .glow-overlay {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+            z-index: 0;
+        }
+
+        .music-controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+        }
+
+        .music-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1744 100%);
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(255, 20, 147, 0.6);
+        }
+
+        /* Ajuste responsivo simple para celulares */
+        @media (max-width: 450px) {
+            .container { width: 180px; height: 180px; }
+            .heart { width: 80px; height: 80px; }
+            .heart::before, .heart::after { width: 80px; height: 130px; }
+            .heart::before { left: 40px; }
+            .heart::after { right: 40px; }
+            .message { font-size: 26px; }
+            .message-sub { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow-overlay"></div>
+
+    <div class="sparkles">
+        <div class="sparkle"></div>
+        <div class="sparkles"><div class="sparkle"></div></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+    </div>
+
+    <div class="background-particles" id="particlesContainer"></div>
+
+    <audio id="backgroundMusic" loop>
+        <source src="https://res.cloudinary.com/dext6b7v6/video/upload/v1711310000/dando_vueltas.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <div class="heart"></div>
+    </div>
+
+    <div class="message-container">
+        <div class="message">
+            felices 4 y infinitos meses
+        </div>
+        <div class="message-sub">
+            monita pxoxa ❤️
+        </div>
+    </div>
+
+    <div class="music-controls">
+        <button class="music-btn" id="playBtn" title="Reproducir">▶</button>
+        <button class="music-btn" id="pauseBtn" title="Pausar">⏸</button>
+    </div>
+
+    <script>
+        function createParticles() {
+            const container = document.getElementById('particlesContainer');
+            const emojis = ['💕', '💖', '💗', '💝', '💓', '✨', '🌹'];
+            
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = '100%';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        const audio = document.getElementById('backgroundMusic');
+        const playBtn = document.getElementById('playBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        let hasStarted = false;
+
+        function startMusic() {
+            if (!hasStarted) {
+                audio.currentTime = 46;
+                hasStarted = true;
+            }
+            audio.play().catch(err => console.log("Interacción requerida"));
+        }
+
+        window.addEventListener('load', () => {
+            audio.currentTime = 46;
+        });
+
+        playBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            startMusic();
+        });
+
+        pauseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            audio.pause();
+        });
+
+        document.addEventListener('click', function(e) {
+            if (e.target !== playBtn && e.target !== pauseBtn) {
+                startMusic();
+            }
+        });
+
+        // Efecto de clic con corazones
+        document.addEventListener('click', function(e) {
+            const heart = document.createElement('div');
+            heart.textContent = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = e.clientX + 'px';
+            heart.style.top = e.clientY + 'px';
+            heart.style.fontSize = '30px';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '9999';
+            heart.style.animation = 'float-up 2s ease-out forwards';
+            
+            const style = document.createElement('style');
+            if (!document.getElementById('float-up-style')) {
+                style.id = 'float-up-style';
+                style.textContent = `
+                    @keyframes float-up {
+                        0% { opacity: 1; transform: translateY(0) scale(1); }
+                        100% { opacity: 0; transform: translateY(-100px) scale(0.5); }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 2000);
+        });
+    </script>
+</body>
+</html>
